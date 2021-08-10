@@ -9,19 +9,23 @@
     @apply font-poppins;
   }
 
-  body {
+  body,
+  textarea {
     &::-webkit-scrollbar {
-      width: 12px; /* width of the entire scrollbar */
+      width: 12px;
     }
 
     &::-webkit-scrollbar-track {
-      background: #1a2023; /* color of the tracking area */
+      background: #1a2023;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #232a2f; /* color of the scroll thumb */
-      border-radius: 20px; /* roundness of the scroll thumb */
-      border: 3px solid #1a2023; /* creates padding around scroll thumb */
+      background-color: #232a2f;
+      border-radius: 20px;
+      border: 3px solid #1a2023;
+      &:hover {
+        background-color: #2d373d;
+      }
     }
   }
 }

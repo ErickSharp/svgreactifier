@@ -7,6 +7,24 @@ const Home = () => {
     const [copySuccessful, setCopySuccessful] = useState<undefined | boolean>(undefined);
     const [copyUnsuccessful, setCopyUnsuccessful] = useState<undefined | boolean>(undefined);
 
+    function handleSuccessfulCopy() {
+        setCopySuccessful(true);
+        setCopyUnsuccessful(false) ;
+    }
+
+    function handleUnsuccessfulCopy() {
+        setCopySuccessful(false);
+        setCopyUnsuccessful(true);
+    }
+
+    function handleCopyClear() {
+        setCopySuccessful(undefined);
+        setCopyUnsuccessful(undefined);
+    }
+
+    useEffect(() => {
+        handleCopyClear();
+    }, [input])
 
     useEffect(() => {
         const result = input.replace(/transform="translate\([0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?\)"/g, (match) => {
@@ -48,32 +66,22 @@ const Home = () => {
     }, [input]
     )
 
-    function handleSuccessfulCopy() {
-        setCopySuccessful(true);
-        setCopyUnsuccessful(false) ;
-    }
-
-    function handleUnsuccessfulCopy() {
-        setCopySuccessful(false);
-        setCopyUnsuccessful(true);
-    }
-
     return (
         <div className="bg-[#13171a] w-full text-white text-sm flex flex-col md:flex-row">
             <div className="h-screen px-10 py-10 space-y-10 flex flex-col w-full md:w-1/2">
                 <textarea
-                    className="bg-[#232A2F] resize-none h-full rounded-md px-4 py-4 focus:outline-none border border-transparent focus:border-blue-500 transition duration-300"
+                    className="bg-[#232A2F] resize-none h-full rounded-md px-4 py-4 focus:outline-none border border-transparent focus:border-green-400 transition duration-300 scrollbar"
                     value={input}
                     onChange={(event) => setInput(event.target.value)}
                 />
                 <div className="h-full relative">
                     <textarea
-                        className="bg-[#1A2023] w-full h-full rounded-md resize-none px-4 py-4 focus:outline-none"
+                        className="bg-[#1A2023] w-full h-full overflow-hidden rounded-md resize-none px-4 py-4 focus:outline-none scrollbar"
                         value={output}
                         readOnly
                     />
                     <div
-                        className={`w-14 h-14 flex text-white items-center justify-center cursor-pointer mx-4 my-4 rounded-md absolute bottom-0 right-0 transtion duration-300 ${copySuccessful ? 'bg-green-400' : copyUnsuccessful ? 'bg-red-500' : 'bg-[#121618] hover:bg-[#0a0c0e]'}`}
+                        className={`w-14 h-14 flex opacity-90 text-white cursor-pointer items-center overflow-hidden justify-center mx-4 my-4 rounded-md absolute bottom-0 right-0 transtion duration-300 ${copySuccessful ? 'bg-green-400' : copyUnsuccessful ? 'bg-red-500' : 'bg-[#121618] hover:bg-[#0a0c0e]'}`}
                         onClick={() => navigator.clipboard.writeText(output).then(handleSuccessfulCopy).catch(handleUnsuccessfulCopy)}
                     >
                         {copySuccessful ?
