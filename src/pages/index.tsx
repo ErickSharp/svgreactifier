@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { IconClipboardCheck, IconClipboardX, IconClipboard } from "@tabler/icons";
+/* eslint-disable no-nested-ternary */
+import React, { useEffect, useState } from 'react';
+import { IconClipboardCheck, IconClipboardX, IconClipboard } from '@tabler/icons';
 
 const Home = () => {
     const [input, setInput] = useState('');
@@ -9,7 +10,7 @@ const Home = () => {
 
     function handleSuccessfulCopy() {
         setCopySuccessful(true);
-        setCopyUnsuccessful(false) ;
+        setCopyUnsuccessful(false);
     }
 
     function handleUnsuccessfulCopy() {
@@ -22,87 +23,71 @@ const Home = () => {
         setCopyUnsuccessful(undefined);
     }
 
-    useEffect(() => {
-        handleCopyClear();
-    }, [input])
+    const ClipboardIcon = () => {
+        if (copySuccessful) {
+            return <IconClipboardCheck size={32} />;
+        } if (copyUnsuccessful) {
+            return <IconClipboardX size={32} />;
+        }
+        return <IconClipboard size={32} />;
+    };
 
     useEffect(() => {
-        const result = input.replace(/transform="translate\([0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?\)"/g, (match) => {
-            return `x={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[0]))}} y={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[1].split(')')[0]))}}`
-        })
-            .replace(/x="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `x={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/y="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `y={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/x1="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `x1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/x2="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `x2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/y1="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `y1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/y2="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `y2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/stroke-width="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `strokeWidth={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/width="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `width={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/height="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `height={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
-            .replace(/font-size="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => {
-                return `fontSize={${Math.round(Number.parseFloat(match.split('"')[1]))}}`
-            })
+        handleCopyClear();
+    }, [input]);
+
+    useEffect(() => {
+        // eslint-disable-next-line max-len
+        const result = input.replace(/transform="translate\([0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?\)"/g, (match) => `x={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[0]))}} y={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[1].split(')')[0]))}}`)
+            .replace(/x="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `x={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/y="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `y={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/x1="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `x1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/x2="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `x2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/y1="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `y1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/y2="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `y2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/stroke-width="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `strokeWidth={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/width="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `width={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/height="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `height={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/font-size="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `fontSize={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
             .replace(/font-family="[^"]*"/g, '');
 
         setOutput(result);
-    }, [input]
-    )
+    }, [input]);
 
     return (
-        <div className="bg-[#13171a] w-full text-white text-sm flex flex-col md:flex-row">
-            <div className="h-screen px-10 py-10 space-y-10 flex flex-col w-full md:w-1/2">
+        <div className="flex flex-col w-full text-sm text-white bg-[#13171a] md:flex-row">
+            <div className="flex flex-col py-10 px-10 space-y-10 w-full h-screen md:w-1/2">
                 <textarea
-                    className="bg-[#232A2F] resize-none h-full rounded-md px-4 py-4 focus:outline-none border border-transparent focus:border-green-400 transition duration-300 scrollbar"
+                    className="py-4 px-4 h-full bg-[#232A2F] rounded-md border border-transparent focus:border-green-400 transition duration-300 focus:outline-none resize-none scrollbar"
                     value={input}
                     onChange={(event) => setInput(event.target.value)}
                 />
-                <div className="h-full relative">
+                <div className="relative h-full">
                     <textarea
-                        className="bg-[#1A2023] w-full h-full overflow-hidden rounded-md resize-none px-4 py-4 focus:outline-none scrollbar"
+                        className="overflow-hidden py-4 px-4 w-full h-full bg-[#1A2023] rounded-md focus:outline-none resize-none scrollbar"
                         value={output}
                         readOnly
                     />
                     <div
+                        // eslint-disable-next-line max-len
                         className={`w-14 h-14 flex opacity-90 text-white cursor-pointer items-center overflow-hidden justify-center mx-4 my-4 rounded-md absolute bottom-0 right-0 transtion duration-300 ${copySuccessful ? 'bg-green-400' : copyUnsuccessful ? 'bg-red-500' : 'bg-[#121618] hover:bg-[#0a0c0e]'}`}
                         onClick={() => navigator.clipboard.writeText(output).then(handleSuccessfulCopy).catch(handleUnsuccessfulCopy)}
                     >
-                        {copySuccessful ?
-                            <IconClipboardCheck size={32} /> :
-                            copyUnsuccessful ?
-                                <IconClipboardX size={32} /> :
-                                <IconClipboard size={32} />
-                        }
+                        <ClipboardIcon />
                     </div>
                 </div>
             </div>
-            <div className="w-full md:w-1/2 h-screen px-10 py-10">
-                {output.includes('svg') ?
-                    <div className="w-full h-full bg-[#1A2023]" dangerouslySetInnerHTML={{ __html: output }} />
-                    :
-                    <div className="w-full h-full bg-[#1A2023] text-3xl font-bold flex items-center justify-center text-red-500">
-                        INSERT SVG
-                    </div>
-                }
+            <div className="py-10 px-10 w-full h-screen md:w-1/2">
+                {output.includes('svg')
+                    // eslint-disable-next-line react/no-danger
+                    ? <div className="w-full h-full bg-[#1A2023]" dangerouslySetInnerHTML={{ __html: output }} />
+                    : (
+                        <div className="flex justify-center items-center w-full h-full text-3xl font-bold text-red-500 bg-[#1A2023]">
+                            INSERT SVG
+                        </div>
+                    )}
             </div>
         </div>
     );
-}
+};
 export default Home;
