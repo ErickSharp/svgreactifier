@@ -4,7 +4,6 @@ import { IconClipboardCheck, IconClipboardX, IconClipboard } from "@tabler/icons
 const Home = () => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
-    const [previewSize, setPreviewSize] = useState(200);
     const [copySuccessful, setCopySuccessful] = useState<undefined | boolean>(undefined);
     const [copyUnsuccessful, setCopyUnsuccessful] = useState<undefined | boolean>(undefined);
 
@@ -49,6 +48,16 @@ const Home = () => {
     }, [input]
     )
 
+    function handleSuccessfulCopy() {
+        setCopySuccessful(true);
+        setCopyUnsuccessful(false) ;
+    }
+
+    function handleUnsuccessfulCopy() {
+        setCopySuccessful(false);
+        setCopyUnsuccessful(true);
+    }
+
     return (
         <div className="bg-[#13171a] w-full text-white text-sm flex flex-col md:flex-row">
             <div className="h-screen px-10 py-10 space-y-10 flex flex-col w-full md:w-1/2">
@@ -65,7 +74,7 @@ const Home = () => {
                     />
                     <div
                         className={`w-14 h-14 flex text-white items-center justify-center cursor-pointer mx-4 my-4 rounded-md absolute bottom-0 right-0 transtion duration-300 ${copySuccessful ? 'bg-green-400' : copyUnsuccessful ? 'bg-red-500' : 'bg-[#121618] hover:bg-[#0a0c0e]'}`}
-                        onClick={() => navigator.clipboard.writeText(output).then(() => { setCopySuccessful(true); setCopyUnsuccessful(false) }).catch(() => { setCopyUnsuccessful(true); setCopySuccessful(false); })}
+                        onClick={() => navigator.clipboard.writeText(output).then(handleSuccessfulCopy).catch(handleUnsuccessfulCopy)}
                     >
                         {copySuccessful ?
                             <IconClipboardCheck size={32} /> :
