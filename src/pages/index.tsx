@@ -24,11 +24,8 @@ const Home = () => {
     }
 
     const ClipboardIcon = () => {
-        if (copySuccessful) {
-            return <IconClipboardCheck size={32} />;
-        } if (copyUnsuccessful) {
-            return <IconClipboardX size={32} />;
-        }
+        if (copySuccessful) return <IconClipboardCheck size={32} />;
+        if (copyUnsuccessful) return <IconClipboardX size={32} />;
         return <IconClipboard size={32} />;
     };
 
