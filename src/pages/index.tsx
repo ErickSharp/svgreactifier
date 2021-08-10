@@ -53,13 +53,14 @@ const Home = () => {
 
     return (
         <div className="flex flex-col w-full text-sm text-white bg-[#13171a] md:flex-row">
-            <div className="flex flex-col py-10 px-10 space-y-10 w-full h-screen md:w-1/2">
+            <div className="flex flex-col py-10 px-4 space-y-10 w-full h-screen md:px-10 md:w-1/2">
                 <textarea
-                    className="py-4 px-4 h-full bg-[#232A2F] rounded-md border border-transparent focus:border-green-400 transition duration-300 focus:outline-none resize-none scrollbar"
+                    // eslint-disable-next-line max-len
+                    className="py-4 px-4 h-1/2 bg-[#232A2F] rounded-md border border-transparent focus:border-green-400 transition duration-300 focus:outline-none resize-none md:h-full scrollbar"
                     value={input}
                     onChange={(event) => setInput(event.target.value)}
                 />
-                <div className="relative h-full">
+                <div className="relative h-1/2 md:h-full">
                     <textarea
                         className="overflow-hidden py-4 px-4 w-full h-full bg-[#1A2023] rounded-md focus:outline-none resize-none scrollbar"
                         value={output}
@@ -74,7 +75,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="py-10 px-10 w-full h-screen md:w-1/2">
+            <div className="py-10 px-4 w-full h-screen md:px-10 md:w-1/2">
                 {output.includes('svg')
                     // eslint-disable-next-line react/no-danger
                     ? <div className="w-full h-full bg-[#1A2023]" dangerouslySetInnerHTML={{ __html: output }} />
