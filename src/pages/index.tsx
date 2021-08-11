@@ -78,7 +78,7 @@ const Home = () => {
             <div className="py-10 px-4 w-full h-screen md:px-10 md:w-1/2">
                 {output.includes('svg')
                     // eslint-disable-next-line react/no-danger
-                    ? <div className="w-full h-full bg-[#1A2023]" dangerouslySetInnerHTML={{ __html: output }} />
+                    ? <div className="overflow-hidden w-full h-full bg-[#1A2023] rounded-md" dangerouslySetInnerHTML={{ __html: output }} />
                     : (
                         <div className="flex justify-center items-center w-full h-full text-3xl font-bold text-red-500 bg-[#1A2023]">
                             INSERT SVG
