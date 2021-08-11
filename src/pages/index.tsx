@@ -62,7 +62,7 @@ const Home = () => {
                 />
                 <div className="relative h-1/2 md:h-full">
                     <textarea
-                        className="overflow-scroll py-4 px-4 w-full h-full bg-[#1A2023] rounded-md focus:outline-none resize-none scrollbar"
+                        className="overflow-y-scroll py-4 px-4 w-full h-full bg-[#1A2023] rounded-md focus:outline-none resize-none scrollbar"
                         value={output}
                         readOnly
                     />
