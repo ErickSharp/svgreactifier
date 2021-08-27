@@ -35,17 +35,17 @@ const Home = () => {
 
     useEffect(() => {
         // eslint-disable-next-line max-len
-        const result = input.replace(/transform="translate\([0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?\)"/g, (match) => `x={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[0]))}} y={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[1].split(')')[0]))}}`)
-            .replace(/x="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `x={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/y="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `y={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/x1="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `x1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/x2="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `x2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/y1="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `y1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/y2="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `y2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/stroke-width="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `strokeWidth={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/width="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `width={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/height="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `height={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
-            .replace(/font-size="[0-9]+[0-9\s]*(\.(\s*[0-9]){2,6})*(\.(\s*[0-9]){2,6})?"/g, (match) => `fontSize={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+        const result = input.replace(/transform="translate\([0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?\)"/g, (match) => `x={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[0]))}} y={${Math.round(Number.parseFloat(match.split('transform="translate(')[1].split(' ')[1].split(')')[0]))}}`)
+            .replace(/x="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `x={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/y="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `y={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/x1="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `x1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/x2="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `x2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/y1="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `y1={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/y2="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `y2={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/stroke-width="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `strokeWidth={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/width="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `width={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/height="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `height={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
+            .replace(/font-size="[0-9]+[0-9\s]*(\.(\s*[0-9]){1,6})*(\.(\s*[0-9]){1,6})?"/g, (match) => `fontSize={${Math.round(Number.parseFloat(match.split('"')[1]))}}`)
             .replace(/font-family="[^"]*"/g, '');
 
         setOutput(result);
